@@ -103,11 +103,19 @@ articleView.setTeasers = function() {
 
   $('.read-on').on('click', function(event) {
     event.preventDefault();
-    $(this).prev().find('p').show();
+    var $this = $(this);
+    var stringArray = $this.html().split(' ');
 
-    $(this).hide();
+    $this.parent('article').find('p').toggle();
+
+    if(stringArray[1] === 'on') {
+      $this.html('Read less &larr;');
+    } else {
+      $this.html('Read on &rarr;');
+    }
   });
 };
+// Bug: hides 1st paragraph
 
 // TODO: Invoke all of the above functions (I mean, methods!):
 articleView.populateFilters();
